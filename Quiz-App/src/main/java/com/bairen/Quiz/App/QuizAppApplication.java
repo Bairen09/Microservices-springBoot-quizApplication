@@ -1,4 +1,4 @@
-package com.bairen.Quiz.App.controller;
+package com.bairen.Quiz.App;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
