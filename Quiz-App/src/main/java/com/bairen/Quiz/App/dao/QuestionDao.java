@@ -1,12 +1,12 @@
 package com.bairen.Quiz.App.dao;
 
-import com.bairen.Quiz.App.model.question;
+import com.bairen.Quiz.App.model.Question;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface QuestionDao extends JpaRepository<question, Integer> {
-    List<question>findByCategory(String category);
+public interface QuestionDao extends JpaRepository<Question, Integer> {
+    List<Question>findByCategory(String category);
 }
