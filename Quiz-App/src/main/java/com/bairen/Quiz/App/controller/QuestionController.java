@@ -3,9 +3,7 @@ package com.bairen.Quiz.App.controller;
 import com.bairen.Quiz.App.model.question;
 import com.bairen.Quiz.App.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,5 +15,9 @@ public class QuestionController {
     @GetMapping("/allquestions")
     public List<question> getAllQuestion(){
         return questionService.getAllQuestions();
+    }
+    @GetMapping("category/{category}")
+    public List<question>getQuestionByCategory(@PathVariable String category){
+        return questionService.getQuestionByCategory(category);
     }
 }
