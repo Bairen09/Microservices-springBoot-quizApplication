@@ -5,6 +5,7 @@ import com.bairen.Quiz.App.dao.QuizDao;
 import com.bairen.Quiz.App.model.Question;
 import com.bairen.Quiz.App.model.QuestionWrapper;
 import com.bairen.Quiz.App.model.Quiz;
+import com.bairen.Quiz.App.model.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,4 +48,24 @@ public class QuizService {
 
         return new ResponseEntity<>(questionForUser, HttpStatus.OK);
     }
+
+    public ResponseEntity<Integer> calculateResult(Integer id, List<Response> responses) {
+        Quiz quiz = quizDao.findById(id).get();
+        List<Question> questions = quiz.getQuestions();
+        int right = 0;
+
+        for (Response response : responses) {
+            for (Question question : questions) {
+                if (question.getId().equals(response.getId())) {
+                    if (response.getResponse().equalsIgnoreCase(question.getRightAnswer())) {
+                        right++;
+                    }
+                    break;
+                }
+            }
+        }
+
+        return new ResponseEntity<>(right, HttpStatus.OK);
+    }
+
 }
